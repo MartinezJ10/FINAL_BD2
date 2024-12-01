@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Server Data</title>
+</head>
+<body>
+    <h1>SELECCIONAR LA TRANSFORMACION</h1>
+    <h3>Los campos seleccionados son de la tabla <%=TABLE_NAME  %>: </h3>
+    <form action="/seleccionarDestino" method="get">
+    <ol>
+        <% columnas.forEach(row => { %>
+            <label> 
+                <input type="checkbox" name="columnas" value="<%= row %>" /> 
+                <%= row %>
+            </label>
+        <% }) %>
+
+    </ol>
+    <h4>OPERACION A REALIZAR: </h4>
+      
+            <select id="operacion" name="operacion" required>
+                <option value="1">Convertir el valor del campo a minúscula</option>
+                <option value="2">Convertir el valor del campo a mayúsc</option>
+                <p>El campo es Fecha obtener:</p>
+                <option value="3">AÑO</option>
+                <option value="4">MES</option>
+                <option value="5">DIA</option>
+                <option value="6">HORA</option>
+                <option value="7">CONCATENAR COLUMNAS</option>
+                <option value="8" selected>DEFAULT</option>
+            </select>
+            <button type="submit">Siguiente</button>
+        </form>
+</body>
+</html>

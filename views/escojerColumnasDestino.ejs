@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SELECCIONAR COLUMNAS DE <%=TABLE_DESTINATION_NAME%></h1>
+    <form action="/enviarColumnasDestino" method="post" onsubmit="prepararCorrespondencias()">
+        <input name="tabla" hidden type="text" value="<%=TABLE_DESTINATION_NAME%>">
+        <input type="hidden" id="correspondenciasJson" name="correspondenciasJson" value="">
+      <ol>
+          <% columnas.forEach(row => { %>
+            <label>
+                <p><%= row.COLUMN_NAME %> -> </p>
+                <select class="correspondencia"  data-destino="<%= row.COLUMN_NAME %>">
+                    <%camposUtilizables.forEach(campo => {  %>
+                        <option value="null">null</option>
+                        <option value="<%=campo%>"><%=campo%></option>
+                    <% }) %>
+                </select>
+              
+            </label>
+                
+            <% }) %>
+        </ol>
+        <button type="submit">Enviar</button>
+    </form>
+    
+</body>
+</html>
+
+<script>
+    function prepararCorrespondencias() {
+        const correspondencias = {};
+
+        document.querySelectorAll('.correspondencia').forEach(select => {
+            const destino = select.getAttribute('data-destino'); 
+            const origen = select.value.trim(); 
+            correspondencias[destino] = origen;
+        });
+
+        document.getElementById('correspondenciasJson').value = JSON.stringify(correspondencias);
+    }
+</script>

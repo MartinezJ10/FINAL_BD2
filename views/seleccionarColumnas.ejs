@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Server Data</title>
+</head>
+<body>
+  <h1>SELECCIONAR COLUMNAS DE <%=TABLE_NAME%></h1>
+    <form action="/enviarColumnas" method="post">
+        <input name="tabla" hidden type="text" value="<%=TABLE_NAME%>">
+      <ol>
+          <% columnas.forEach(row => { %>
+            <label>
+                <input type="checkbox" name="columns" value="<%= row.COLUMN_NAME %>" /> 
+                <%= row.COLUMN_NAME %>
+            </label>
+            <% }) %>
+        </ol>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

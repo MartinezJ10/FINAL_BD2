@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Server Data</title>
+</head>
+<body>
+  <h1>SELECCIONAR TABLA DESTINO</h1>
+  <% data.forEach(row => { %>
+    <a href="/seleccionarColumnaDestino?tabla=<%= row.TABLE_NAME %>" id="<%= row.TABLE_NAME %>"><%= row.TABLE_NAME %></a>
+  <% }) %>
+   
+  
+</body>
+</html>
